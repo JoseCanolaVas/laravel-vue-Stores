@@ -116,6 +116,11 @@ export default {
           icon: 'mdi-tag-plus',
           title: 'Products',
           to: '/products/products'
+        },
+        {
+          icon: 'mdi-toggle-switch-off',
+          title: 'Estados',
+          to: '/estados/estados',
         }
       ],
       miniVariant: false,

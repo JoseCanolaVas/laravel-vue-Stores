@@ -27,13 +27,13 @@
       </template>
     </v-data-table>
 
-    <v-dialog v-model="formModalCrear" max-width="800px">
-      <CrearProduct @cerrarModal="formModalCrear" @recargarDatos="recargarDatos" />
+    <v-dialog v-model="formModalCrear" max-width="800px" persistent>
+      <CrearProduct  @recargarDatos="recargarDatos" @cerrar="cerrarModal"/>
     </v-dialog>
 
 
     <v-dialog v-model="formModalEditar" persistent max-width="800px">
-      <EditarProduct @recargarDatos="recargarDatos" :productoSeleccionado="productoSeleccionado" @cerrar="CerrarModal"/>
+      <EditarProduct @recargarDatos="recargarDatos" :productoSeleccionado="productoSeleccionado" @cerrar="cerrarModal"/>
     </v-dialog>
 
 
@@ -87,6 +87,12 @@ export default {
 
       }
     },
+
+
+    cerrarModal(){
+      this.formModalCrear = false;
+      this.formModalEditar = false;
+    }
 
 
 

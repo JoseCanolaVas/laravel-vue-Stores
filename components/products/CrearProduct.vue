@@ -48,10 +48,7 @@ import { mapActions } from "vuex";
 
 export default {
   props: {
-    formModalCrear: {
-      type: Boolean,
-      default: false,
-    }
+    value: Boolean,
   },
 
   data() {
@@ -75,11 +72,9 @@ export default {
   },
 
   methods: {
-    ...mapActions("app", ["setPreload"]),
 
     cerrarModal() {
-      this.$emit("update:formModalCrear", false);
-
+      this.$emit("cerrar");
     },
 
 

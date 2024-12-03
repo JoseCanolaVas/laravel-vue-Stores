@@ -29,7 +29,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn small dark color="red" @click="cerrarEditar()">Cerrar</v-btn>
+      <v-btn small dark color="red" @click="cerrarModal()">Salir</v-btn>
       <v-btn small dark color="success" @click="actualizar">actualizar</v-btn>
     </v-card-actions>
   </v-card>
@@ -39,9 +39,9 @@
 export default {
   props: {
     formModalEditar:{
-      type: Boolean,
-      default: false,
+      value:Boolean,
     },
+
 
     productoSeleccionado:{
       type: Boolean,
@@ -67,9 +67,10 @@ export default {
 
     methods:{
 
-      cerrarEditar(){
-        this.$emit('cerrar')
-      }
+      cerrarModal() {
+      this.$emit("cerrar");
+    },
+
 
     }
 
