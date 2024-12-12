@@ -15,6 +15,12 @@
     <v-data-table :headers="headers" :items="items" dense :search="search" :loading="loading" disable-pagination
       loading-text="Cargando ... Por favor espere." no-data-text="Sin datos para Mostrar">
 
+      <template v-slot:[`item.estado`]="{ item }">
+        <v-chip :color="getColor(item.estado)" dark small>
+          {{ item.estado }}
+        </v-chip>
+      </template>
+
       <template v-slot:[`item.acciones`]="{ item }">
         <v-tooltip top>
           <template v-slot:activator="{ on, attrs }">
@@ -24,16 +30,26 @@
           </template>
           <span>Editar</span>
         </v-tooltip>
+
+        <v-tooltip top>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon :color="getColor(item.estado)" small v-on="on" v-bind="attrs" @click="cambiarEstado(item)">
+              mdi-toggle-switch
+            </v-icon>
+          </template>
+          <span>Cambiar Estado</span>
+        </v-tooltip>
       </template>
     </v-data-table>
 
     <v-dialog v-model="formModalCrear" max-width="800px" persistent>
-      <CrearProduct  @recargarDatos="recargarDatos" @cerrar="cerrarModal"/>
+      <CrearProduct @recargarDatos="recargarDatos" @cerrar="cerrarModal" />
     </v-dialog>
 
 
     <v-dialog v-model="formModalEditar" persistent max-width="800px">
-      <EditarProduct @recargarDatos="recargarDatos" :productoSeleccionado="productoSeleccionado" @cerrar="cerrarModal"/>
+      <EditarProduct @recargarDatos="recargarDatos" :productoSeleccionado="productoSeleccionado"
+        @cerrar="cerrarModal" />
     </v-dialog>
 
 
@@ -74,12 +90,12 @@ export default {
       this.formModalCrear = true;
     },
 
-    abrirModalEditar(item){
+    abrirModalEditar(item) {
       this.formModalEditar = true;
       this.productoSeleccionado = item;
     },
 
-    async CrearProduct(){
+    async CrearProduct() {
       try {
         this.setPreload(true);
         await this.$axios.post("products/crear")
@@ -89,11 +105,18 @@ export default {
     },
 
 
-    cerrarModal(){
+    cerrarModal() {
       this.formModalCrear = false;
       this.formModalEditar = false;
-    }
+    },
 
+    getColor(estado){
+      return estado === 'activo' ? 'green' : 'red';
+    },
+
+    cambiarEstado(){
+
+    }
 
 
 

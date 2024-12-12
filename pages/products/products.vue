@@ -41,6 +41,11 @@ export default {
           align: "center",
         },
         {
+          text: "Estado",
+          align: "center",
+          value: "estado"
+        },
+        {
           text: "Acciones",
           value: "acciones",
           align: "center",

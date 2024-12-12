@@ -8,28 +8,27 @@
         <v-form ref="formModalCrear">
           <v-row dense>
             <v-col cols="12" sm="12" md="12">
-              <v-text-field dense outlined label="Name">
+              <v-text-field dense outlined label="Name" v-model="formProduct.name">
 
               </v-text-field>
             </v-col>
             <v-col cols="12" sm="12" md="12">
-              <v-text-field dense outlined label="Description">
+              <v-text-field dense outlined label="Description" v-model="formProduct.description">
 
               </v-text-field>
             </v-col>
             <v-col cols="12" sm="12" md="12">
-              <v-text-field dense outlined label="Supplier">
+              <v-text-field dense outlined label="Supplier" v-model="formProduct.supplier">
 
               </v-text-field>
             </v-col>
             <v-col cols="12" sm="12" md="12">
-              <v-text-field dense outlined label="Store">
+              <v-text-field dense outlined label="Store" v-model="formProduct.store">
 
               </v-text-field>
             </v-col>
             <v-col cols="12" sm="12" md="12">
-              <v-text-field dense outlined label="Price">
-
+              <v-text-field dense outlined label="Price" v-model="formProduct.price">
               </v-text-field>
             </v-col>
           </v-row>
@@ -44,7 +43,6 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 
 export default {
   props: {
@@ -77,6 +75,14 @@ export default {
       this.$emit("cerrar");
     },
 
+    async crearProduct(){
+      try {
+        this.preload = true;
+        await = this.$axios.post('/')
+      } catch (error) {
+          this.$toast.error(error);
+      }
+    }
 
   }
 }

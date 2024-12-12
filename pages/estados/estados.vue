@@ -5,7 +5,7 @@
     </v-alert>
     <hr color="indigo">
 
-    <ListarEstados :headers="headersEstados" :items="estados" :loading="loading.estados" :estados="estados" />
+    <ListarEstados :headers="headersEstados" :items="estados" :loading="loading.estados" :estados="estados" @recargarDatos="ListarEstados" />
 
   </div>
 </template>
@@ -44,7 +44,9 @@ export default {
         {
           text: "Acciones",
           align: "center",
-          value: "acciones"
+          value: "acciones",
+          sortable: false,
+
         }
 
       ]
